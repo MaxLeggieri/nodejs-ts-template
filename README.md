@@ -4,7 +4,7 @@ This is a barebone NodeJS + TypeScript project for a remote API. Use it as a sta
 
 Thanks to DigitalOcean for the inspiration :)
 
-## Create the npm project
+## Step by step creation of this template
 
 Initialize the npm project
 ```bash
