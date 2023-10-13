@@ -18,7 +18,7 @@ npm install --save-dev typescript
 
 Create the typescript config file
 ```bash
-nano tsconfig.json
+touch tsconfig.json
 ```
 
 Paste contents to file
@@ -61,7 +61,10 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.json({
+    response: true,
+    message: "Your API is up and working"
+  })
 })
 
 app.listen(port, () => {
@@ -81,8 +84,11 @@ Run the JavaScript output with node
 node dist/api.js
 ```
 Now, you can visit http://localhost:3000 in your browser and you should see the message
-```
-Hello World!
+```json
+{
+  "response": true,
+  "message": "Your API is up and working"
+}
 ```
 
 ## Configuring Typescript Linting with eslint
@@ -102,13 +108,14 @@ This will ask you a series of questions. For this project we’ll answer the fol
 - What type of modules does your project use?: JavaScript modules (import/export)
 
 - Which framework does your project use?: None of these
-Does your project use TypeScript?: Yes
+
+- Does your project use TypeScript?: Yes
 
 - Where does your code run?: Node
 
 - What format do you want your config file to be in?: JavaScript
 
-Finally, you will be prompted to install some additioanl eslint libraries. Choose Yes. The process will finish and you’ll be left with the following configuration file: eslintrc.js
+Finally, you will be prompted to install some additioanl eslint libraries. Choose Yes and select npm to install those packages. The process will finish and you’ll be left with the following configuration file: eslintrc.js
 ```js
 module.exports = {
   env: {
@@ -131,22 +138,22 @@ npx eslint . --ext .ts
 ```
 ## Updating the package.json File
 
-It can be useful to put your commonly run command line tasks into npm scripts. npm scripts are defined in your package.json file and can be run with the command "npm run your_script_name".
+It can be useful to put your commonly run command line tasks into npm scripts. npm scripts are defined in your package.json file.
 
 In this step you will add a start script that will transpile the TypeScript code then run the resulting .js application.
 
 You will also add a lint script to run the eslint linter on your TypeScript files.
 
-Open the package.json file and update it accordingly
+Open the `package.json` file and update it accordingly
 ```json
 {
   "name": "node_project",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/api.js", // modify this
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "lint": "eslint . --ext .ts",
+    "start": "tsc && node dist/app.js", // add this line
+    "lint": "eslint . --ext .ts", // add this line too
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -163,6 +170,15 @@ Open the package.json file and update it accordingly
     "express": "^4.17.1"
   }
 }
+```
+
+Now your can run those new commands with:
+```
+npm run start
+```
+OR 
+```
+npm run lint
 ```
 
 **Created by Max Leggieri for Vivendo Developers**
