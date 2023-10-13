@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/api.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/api.js",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
